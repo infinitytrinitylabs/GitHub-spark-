@@ -115,7 +115,7 @@ function PendantShape({ a, b, c }: { a: string; b: string; c: string }) {
   );
 }
 
-function EarringShape({ a, b }: { a: string; b: string; c: string }) {
+function EarringShape({ a, b, c }: { a: string; b: string; c: string }) {
   return (
     <group>
       <mesh position={[-0.5, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
@@ -133,6 +133,11 @@ function EarringShape({ a, b }: { a: string; b: string; c: string }) {
       <mesh position={[0.5, -0.55, 0]}>
         <sphereGeometry args={[0.08, 24, 24]} />
         <meshStandardMaterial color={b} roughness={0.6} />
+      </mesh>
+      {/* subtle accent droplet picking up the third palette color */}
+      <mesh position={[0, -0.35, 0]}>
+        <sphereGeometry args={[0.05, 16, 16]} />
+        <meshStandardMaterial color={c} roughness={0.4} />
       </mesh>
     </group>
   );
@@ -183,7 +188,7 @@ function GarmentShape({ a, b, c }: { a: string; b: string; c: string }) {
   );
 }
 
-function BagShape({ a, b }: { a: string; b: string; c: string }) {
+function BagShape({ a, b, c }: { a: string; b: string; c: string }) {
   return (
     <group>
       <mesh castShadow receiveShadow>
@@ -210,11 +215,16 @@ function BagShape({ a, b }: { a: string; b: string; c: string }) {
         <boxGeometry args={[0.2, 0.12, 0.04]} />
         <meshPhysicalMaterial color={b} metalness={1} roughness={0.25} />
       </mesh>
+      {/* stitched piping accent */}
+      <mesh position={[0, -0.55, 0.26]}>
+        <boxGeometry args={[1.58, 0.03, 0.02]} />
+        <meshStandardMaterial color={c} roughness={0.8} />
+      </mesh>
     </group>
   );
 }
 
-function GlassesShape({ a, b }: { a: string; b: string; c: string }) {
+function GlassesShape({ a, b, c }: { a: string; b: string; c: string }) {
   return (
     <group rotation={[0.15, 0, 0]}>
       <mesh position={[-0.55, 0, 0]}>
@@ -243,6 +253,13 @@ function GlassesShape({ a, b }: { a: string; b: string; c: string }) {
             transparent
             opacity={0.55}
           />
+        </mesh>
+      ))}
+      {/* temple tips — accent from third palette color */}
+      {[-1, 1].map((s) => (
+        <mesh key={s} position={[s * 1.02, 0, -0.25]} rotation={[0, s * 0.4, 0]}>
+          <boxGeometry args={[0.5, 0.04, 0.05]} />
+          <meshPhysicalMaterial color={c} roughness={0.5} clearcoat={0.4} />
         </mesh>
       ))}
     </group>
@@ -284,7 +301,7 @@ function WatchShape({ a, b, c }: { a: string; b: string; c: string }) {
   );
 }
 
-function HatShape({ a, b }: { a: string; b: string; c: string }) {
+function HatShape({ a, b, c }: { a: string; b: string; c: string }) {
   return (
     <group>
       <mesh position={[0, 0.2, 0]}>
@@ -298,6 +315,11 @@ function HatShape({ a, b }: { a: string; b: string; c: string }) {
       <mesh position={[0, -0.1, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.6, 0.04, 12, 48]} />
         <meshStandardMaterial color={b} roughness={0.7} />
+      </mesh>
+      {/* crown pinch detail */}
+      <mesh position={[0, 0.52, 0]}>
+        <cylinderGeometry args={[0.58, 0.6, 0.04, 48]} />
+        <meshStandardMaterial color={c} roughness={0.75} />
       </mesh>
     </group>
   );
